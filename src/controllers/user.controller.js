@@ -45,6 +45,44 @@ let userController = {
         })
     },
 
+    getAllActive: (req, res, next) => {
+        userService.getAllActive((error, success) => {
+            if (error) {
+                return next({
+                    status: error.status,
+                    message: error.message,
+                    data: {}
+                })
+            }
+            if (success) {
+                res.status(200).json({
+                    status: 200,
+                    message: success.message,
+                    data: success.data
+                })
+            }
+        })
+    },
+
+    getAllInactive: (req, res, next) => {
+        userService.getAllInactive((error, success) => {
+            if (error) {
+                return next({
+                    status: error.status,
+                    message: error.message,
+                    data: {}
+                })
+            }
+            if (success) {
+                res.status(200).json({
+                    status: 200,
+                    message: success.message,
+                    data: success.data
+                })
+            }
+        })
+    },
+
     getById: (req, res, next) => {
         const userId = req.params.userId
      //  logger.trace('userController: getById', userId)
@@ -69,25 +107,52 @@ let userController = {
     // Todo: Implement the update and delete methods
 
    update: (req, res, next) => {
-   // const userId = req.params.userId;
-    const newUser = database._data.find((u) => u.id == userId);
-   userService.update(userId, (error, success) => {
-    if (user) {
-        const index = database.user.indexOf(user);
-        const newUser = req.body;
-        newUser.Id = userId;
-        database.data[index] = newUser;
+    const userId = req.params.userId;
+    const user = req.body;
+   // const user = database._data.find((u) => u.id == userId);
+   userService.update(userId, user, (error, success) => {
+    if (error) {
+        return next({
+            status: error.status,
+            message: error.message,
+            data: {}
+        })
+    }
+    if (success) {
         res.status(200).json({
             status: 200,
             message: "User updated succesfully!",
-            data: newUser
-        });
-        return;
+            data: success.data
+        })
     }
-   })
+        
+})
 },
 
-   delete: (req, res, next) => {
+delete: (req, res, next) => {
+    const userId = req.params.userId;
+    const user = req.body;
+   // const user = database._data.find((u) => u.id == userId);
+   userService.update(userId, user, (error, success) => {
+    if (error) {
+        return next({
+            status: error.status,
+            message: error.message,
+            data: {}
+        })
+    }
+    if (success) {
+        res.status(200).json({
+            status: 200,
+            message: "User deleted succesfully!",
+            data: success.data
+        })
+    }
+        
+})
+}
+
+ /*  delete: (req, res, next) => {
     const user = database.data.find((u) => u.id == req.params.userId);
     userService.delete(user, (error, success) => {
     if (user) {
@@ -101,7 +166,7 @@ let userController = {
         return;
     }
 })
-   }
+   } */
    
 }
 

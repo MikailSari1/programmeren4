@@ -4,6 +4,9 @@
 // De array bevat een aantal dummy records.
 // De database heeft twee methoden: get en add.
 // Opdracht: Voeg de overige methoden toe.
+
+import { use } from "chai"
+
 //
 const database = {
     // het array met dummy records. Dit is de 'database'.
@@ -35,6 +38,28 @@ const database = {
             // Roep de callback aan, en retourneer de data
             callback(null, this._data)
         }, this._delayTime)
+    },
+
+    getAllActive(callback) {
+        // Simuleer een asynchrone operatie
+        setTimeout(() => {
+            // Filter de data op active = true
+            const activeUsers = this._data.filter((user) => {
+                return user.isActive
+            })
+            callback(null, activeUsers)
+        })
+    },
+
+    getAllInactive(callback) {
+        // Simuleer een asynchrone operatie
+        setTimeout(() => {
+            // Filter de data op active = true
+            const inactiveUsers = this._data.filter((user) => {
+                return !user.isActive
+            })
+            callback(null, inactiveUsers)
+        })
     },
 
     getById(id, callback) {
@@ -70,7 +95,7 @@ const database = {
             } else {
                 // Bijwerken van de item in de array
                 this._data[id] = item;
-                callback(null, { message: `Item with id ${id} has been updated.`, data: item });
+                callback(null, { message: `User with id ${id} has been updated.`, data: item });
             }
         });
     },

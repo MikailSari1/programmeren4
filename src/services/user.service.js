@@ -35,6 +35,32 @@ const userService = {
         })
     },
 
+    getAllActive: (callback) => {
+        database.getAllActive((err, data) => {
+            if (err) {
+                callback(err, null)
+            } else {
+                callback(null, {
+                    message: `Found ${data.length} active users.`,
+                    data: data
+                })
+            }
+        })
+    },
+
+    getAllInactive: (callback) => {
+        database.getAllInactive((err, data) => {
+            if (err) {
+                callback(err, null)
+            } else {
+                callback(null, {
+                    message: `Found ${data.length} active users.`,
+                    data: data
+                })
+            }
+        })
+    },
+
     getById: (id, callback) => {
         database.getById(id, (err, data) => {
             if (err) {
@@ -54,7 +80,7 @@ const userService = {
                 callback(err, null);
             } else {
                 callback(null, {
-                    message: `User updated with id ${id}`,
+                    message: `User updated with id ${data.id}`,
                     data: data
                 })
             }
