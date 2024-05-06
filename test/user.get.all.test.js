@@ -7,7 +7,7 @@ should();
 use(chaiHttp);
 setLevel('warn');
 
-const endpointToTest = '/api/users';
+const endpointToTest = '/api/user';
 
 describe('UC202 Toon gebruikers', () => {
     it('TC-202-1 Toon alle gebruikers', (done) => {

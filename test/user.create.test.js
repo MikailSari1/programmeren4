@@ -80,12 +80,24 @@ describe('UC201 Registreren als nieuwe user', () => {
             })
     })
 
-    it.skip('TC-201-4 Gebruiker bestaat al', (done) => {
-        //
-        // Hier schrijf je jouw testcase.
-        //
-        done()
-    })
+    it('TC-201-4: Gebruiker bestaat al', (done) => {
+        const existingUser = {
+            firstName: 'John',
+            lastName: 'Doe',
+            emailAddress: 'john.doe@example.com'
+        };
+    
+        request(server)
+            .post(endpointToTest)
+            .send(existingUser)
+            .end((err, res) => {
+ 
+                expect(res.status).to.equal(409); // Conflict status code
+                expect(res.body.message).to.equal('User already exists');
+                done();
+            });
+    });
+    
 
     it('TC-201-5 Gebruiker succesvol geregistreerd', (done) => {
         request(server)
