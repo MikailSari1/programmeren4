@@ -1,10 +1,11 @@
-const express = require('express')
-const userRoutes = require('./src/routes/user.routes')
+import express, { json } from 'express'
+import userRoutes from './src/routes/user.routes.js'
+// import database from '../dao/inmem-db.js';
 
 const app = express()
 
 // express.json zorgt dat we de body van een request kunnen lezen
-app.use(express.json())
+app.use(json())
 
 const port = process.env.PORT || 3000
 
@@ -53,4 +54,4 @@ app.listen(port, () => {
 })
 
 // Deze export is nodig zodat Chai de server kan opstarten
-module.exports = app
+export default app

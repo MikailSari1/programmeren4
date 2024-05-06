@@ -48,7 +48,7 @@ const database = {
         }, this._delayTime)
     },
 
-    add(item, callback) {
+    create(item, callback) {
         // Simuleer een asynchrone operatie
         setTimeout(() => {
             // Voeg een id toe en voeg het item toe aan de database
@@ -60,10 +60,36 @@ const database = {
             // met het toegevoegde item als argument, of null als er een fout is opgetreden
             callback(null, item)
         }, this._delayTime)
+    },
+
+    update(id, item, callback) {
+        // Simuleer een asynchrone operatie
+        setTimeout(() => {
+            if (id < 0 || id >= this._data.length) {
+                callback({ message: `Error: id ${id} does not exist!` }, null);
+            } else {
+                // Bijwerken van de item in de array
+                this._data[id] = item;
+                callback(null, { message: `Item with id ${id} has been updated.`, data: item });
+            }
+        });
+    },
+
+    delete(id, callback) {
+        // Simuleer een asynchrone operatie
+        setTimeout(() => {
+            if (id < 0 || id >= this._data.length) {
+                callback({ message: `Error: id ${id} does not exist!` }, null);
+            } else {
+                // Verwijderen van het item uit de array
+                this._data.splice(id, 1);
+            }
+        })
     }
+    
 
     // Voeg zelf de overige database functionaliteit toe
 }
 
-module.exports = database
-// module.exports = database.index;
+export default database;
+// module.exports = database._index;

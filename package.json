@@ -1,12 +1,14 @@
 {
-    "name": "My First Express Server",
+    "name": "nodejs-programmeren4 ",
     "version": "0.0.1",
     "description": "Mijn eerste Express server",
     "main": "index.js",
+    "type": "module",
     "scripts": {
+        "build": "npm install",
         "start": "node index.js",
         "dev": "nodemon index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "node ./node_modules/mocha/bin/mocha --reporter spec --exit"
     },
     "keywords": [
         "nodejs",
@@ -14,7 +16,7 @@
         "avans",
         "programmeren-4"
     ],
-    "author": "Mikail",
+    "author": "Mikail Sari",
     "license": "ISC",
     "prettier": {
         "singleQuote": true,
@@ -23,9 +25,13 @@
         "tabWidth": 4
     },
     "dependencies": {
-        "express": "^4.19.2"
+        "express": "^4.19.2",
+        "tracer": "^1.3.0"
     },
     "devDependencies": {
+        "chai": "^4.4.1",
+        "chai-http": "^4.4.0",
+        "mocha": "^10.4.0",
         "nodemon": "^3.1.0"
     }
 }
