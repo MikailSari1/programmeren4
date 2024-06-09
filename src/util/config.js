@@ -1,14 +1,12 @@
 //
 // Application configuration
 //
-const secretkey = process.env.SECRETKEY || 'ThisIsASecretKey'
+export const secretkey = process.env.SECRETKEY || 'DitIsEenGeheim'
 
 const config = {
-    secretkey: secretkey,
-
-    dbHost: 'localhost',
-    dbUser: 'app_user',
-    dbDatabase: 'database_name'
+    secretkey
 }
+
+
 
 export default config

@@ -16,7 +16,7 @@ const database = {
             firstName: 'Hendrik',
             lastName: 'van Dam',
             emailAdress: 'hvd@server.nl',
-            active: true
+            isActive: true
             // Hier de overige velden uit het functioneel ontwerp
         },
         {
@@ -24,7 +24,7 @@ const database = {
             firstName: 'Marieke',
             lastName: 'Jansen',
             emailAdress: 'm@server.nl',
-            active: false
+            isActive: false
             // Hier de overige velden uit het functioneel ontwerp
         }
     ],
@@ -46,22 +46,18 @@ const database = {
         // Simuleer een asynchrone operatie
         setTimeout(() => {
             // Filter de data op active = true
-            const activeUsers = this._data.filter((user) => {
-                return user.isActive
-            })
-            callback(null, activeUsers)
-        })
+            const activeUsers = this._data.filter(user => user.isActive);
+            callback(null, activeUsers);
+        }, this._delayTime)
     },
 
     getAllInactive(callback) {
         // Simuleer een asynchrone operatie
         setTimeout(() => {
             // Filter de data op active = true
-            const inactiveUsers = this._data.filter((user) => {
-                return !user.isActive
-            })
-            callback(null, inactiveUsers)
-        })
+            const inactiveUsers = this._data.filter(user => !user.isActive);
+            callback(null, inactiveUsers);
+        }, this._delayTime)
     },
 
     getById(id, callback) {

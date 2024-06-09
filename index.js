@@ -1,8 +1,17 @@
 import express, { json } from 'express'
 import userRoutes from './src/routes/user.routes.js'
+import mealRoutes from './src/routes/meal.routes.js'
+import authenticationRoutes from './src/routes/authentication.routes.js'
 // import database from '../dao/inmem-db.js';
+// const express = require("express");
+
+
 
 const app = express()
+app.use(express.json());
+app.use(mealRoutes);
+app.use(authenticationRoutes);
+
 
 // express.json zorgt dat we de body van een request kunnen lezen
 app.use(json())

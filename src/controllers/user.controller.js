@@ -45,6 +45,27 @@ let userController = {
         })
     },
 
+    getProfile: (req, res, next) => {
+        const userId = req.userId
+        console.trace('getProfile for userId', userId)
+        userService.getProfile(userId, (error, success) => {
+            if (error) {
+                return next({
+                    status: error.status,
+                    message: error.message,
+                    data: {}
+                })
+            }
+            if (success) {
+                res.status(200).json({
+                    status: 200,
+                    message: success.message,
+                    data: success.data
+                })
+            }
+        })
+    },
+
     getAllActive: (req, res, next) => {
         userService.getAllActive((error, success) => {
             if (error) {
